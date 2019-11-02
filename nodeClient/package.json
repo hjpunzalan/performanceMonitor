@@ -1,10 +1,10 @@
 {
-  "name": "nodeClient",
+  "name": "nodeclient",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,8 @@
     "farmhash": "^3.0.0",
     "socket.io": "^2.3.0",
     "socket.io-redis": "^5.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
   }
 }
