@@ -3,6 +3,12 @@
 //  - farmhash
 //  - socket.io-client
 const os = require('os');
+const io = require('socket.io-client');
+let socket = io('http://localhost:3000');
+
+socket.on('connect', () => {
+	console.log('connected to the socket server');
+});
 
 async function performanceData() {
 	// CPU load (current)
@@ -90,6 +96,4 @@ function getCpuLoad() {
 	});
 }
 
-performanceData().then(performanceData => {
-	console.log(performanceData);
-});
+performanceData().then(performanceData => {});
