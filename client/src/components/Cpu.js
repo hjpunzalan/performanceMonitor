@@ -14,10 +14,10 @@ class Cpu extends Component {
 
 		return (
 			<div className="cpu">
-				<h3>CPU</h3>
+				<h3>CPU Load</h3>
 				<div className="canvas-wrapper">
 					<canvas className="canvas" ref={this.canvas}></canvas>
-					<div className="cpu-text">{cpuLoad}</div>
+					<span className="cpu-text">{cpuLoad}</span>
 				</div>
 			</div>
 		);
