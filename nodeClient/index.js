@@ -7,7 +7,27 @@ const io = require('socket.io-client');
 let socket = io('http://localhost:3000');
 
 socket.on('connect', () => {
-	console.log('connected to the socket server');
+	// To identify this machine to whomever is connected using network interfaces (MAC)
+	const nI = os.networkInterfaces();
+	let macA;
+	// looop through all the nI for this machine and find a non-internal one
+	// internal to true prevents internet access to the machine
+	for (let key in nI) {
+		if (!nI[key][0].internal)
+			// grab first element as its the same
+			macA = nI[key][0].mac;
+		break;
+	}
+
+	// client auth with single key value
+	socket.emit('clientAuth', 'testsdsdsdsds');
+
+	// start sending over data on interval
+	let perfDataInterval = setInterval(() => {
+		performanceData().then(allPerformanceData => {
+			socket.emit('perfData', allPerformanceData);
+		});
+	}, 1000);
 });
 
 async function performanceData() {
@@ -95,5 +115,3 @@ function getCpuLoad() {
 		}, 100);
 	});
 }
-
-performanceData().then(performanceData => {});
