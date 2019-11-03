@@ -22,8 +22,15 @@ socket.on('connect', () => {
 	// client auth with single key value
 	socket.emit('clientAuth', 'testsdsdsdsds');
 
+	// Send initial performance data
+	performanceData().then(allPerformanceData => {
+		allPerformanceData.macA = macA;
+		socket.emit('initPerfData', allPerformanceData);
+	});
+
 	// start sending over data on interval
 	let perfDataInterval = setInterval(() => {
+		// set Interval repeats the callback
 		performanceData().then(allPerformanceData => {
 			socket.emit('perfData', allPerformanceData);
 		});

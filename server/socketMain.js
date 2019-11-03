@@ -1,5 +1,13 @@
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1/perfData', {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+});
+
+const Machine = require('./models/Machine');
+
 function socketMain(io, socket) {
-	// console.log('Socket Main is here!', socket.id);
+	let macA;
 
 	socket.on('clientAuth', key => {
 		if (key === 'testsdsdsdsds') {
@@ -11,6 +19,13 @@ function socketMain(io, socket) {
 			// an invalid client joined
 			socket.disconnect(true);
 		}
+	});
+
+	// machine connected, check to see if its new
+	// if new, add it
+	socket.on('initPerfData', data => {
+		// update function scope variable
+		macA = data.macA;
 	});
 
 	socket.on('perfData', data => {
