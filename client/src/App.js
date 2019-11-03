@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import socket from './utils/socketConnections';
+import Widget from './components/Widget';
 
 class App extends Component {
 	constructor() {
@@ -16,7 +17,11 @@ class App extends Component {
 	}
 
 	render() {
-		return <div></div>;
+		return (
+			<div>
+				<Widget />
+			</div>
+		);
 	}
 }
 
