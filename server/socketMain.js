@@ -23,14 +23,37 @@ function socketMain(io, socket) {
 
 	// machine connected, check to see if its new
 	// if new, add it
-	socket.on('initPerfData', data => {
+	socket.on('initPerfData', async data => {
 		// update function scope variable
 		macA = data.macA;
+		// Check mongo database
+		const mongooseResponse = await checkAndAdd(data);
+		console.log(mongooseResponse);
 	});
 
 	socket.on('perfData', data => {
 		console.log(data);
 	});
+}
+
+async function checkAndAdd(data) {
+	// need to be async because it relates to dbs
+	try {
+		const machine = await Machine.findOne({
+			macA: data.macA
+		});
+
+		if (machine === null) {
+			// add data if not in db
+			let newMachine = new Machine(data);
+			newMachine.save();
+			return 'added';
+		} else {
+			return 'found';
+		}
+	} catch (error) {
+		console.error(error);
+	}
 }
 
 module.exports = socketMain;
