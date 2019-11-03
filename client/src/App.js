@@ -13,7 +13,6 @@ class App extends Component {
 
 	componentDidMount() {
 		socket.on('data', data => {
-			console.log(data);
 			// received new data
 			// Update state to rerender components
 			// State is object for easy finding key vaLue pairs
@@ -23,6 +22,7 @@ class App extends Component {
 			this.setState({
 				performanceData: currentState
 			});
+			console.log(this.state.performanceData);
 		});
 	}
 
