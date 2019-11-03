@@ -12,11 +12,20 @@ class App extends Component {
 
 	componentDidMount() {
 		socket.on('data', data => {
-			console.log(data);
+			// received new data
+			// Update state to rerender components
+			// State is object for easy finding key vaLue pairs
+			const currentState = { ...this.state.performanceData };
+			// Each performance data is per computer via mac address
+			currentState[data.macA] = data;
+			this.setState({
+				performanceData: currentState
+			});
 		});
 	}
 
 	render() {
+		console.log(this.state.performanceData);
 		return (
 			<div>
 				<Widget />
