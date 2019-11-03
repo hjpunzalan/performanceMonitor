@@ -6,16 +6,32 @@ import Info from './Info';
 export default class Widget extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {};
 	}
 
 	render() {
+		const {
+			macA,
+			freeMem,
+			totalMem,
+			usedMem,
+			memUsage,
+			osType,
+			upTime,
+			cpuModel,
+			numCores,
+			cpuSpeed,
+			cpuLoad
+		} = this.props.data;
+		const cpu = { cpuLoad };
+		const mem = { totalMem, usedMem, memUsage, freeMem };
+		const info = { macA, osType, upTime, cpuModel, numCores, cpuSpeed };
+
 		return (
 			<div>
-				<h1>Widget</h1>
-				<p>{this.props.data.cpuLoad}</p>
-				<Cpu />
-				<Mem />
-				<Info />
+				<Cpu cpuData={cpu} />
+				<Mem memData={mem} />
+				<Info infoData={info} />
 			</div>
 		);
 	}
