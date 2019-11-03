@@ -1,3 +1,7 @@
+// Handles the main socket that connects server to Node Client and UI
+// Node client generate the performance data required per machine
+// The UI consumes this data communicated through the socket Main
+
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1/perfData', {
 	useNewUrlParser: true,
@@ -14,6 +18,7 @@ function socketMain(io, socket) {
 			// valid nodeClient
 			socket.join('clients');
 		} else if (key === '23sdsad232') {
+			// valid UI client
 			socket.join('ui');
 			console.log('A react client has joined');
 		} else {
@@ -24,6 +29,7 @@ function socketMain(io, socket) {
 
 	// machine connected, check to see if its new
 	// if new, add it
+	// This for react to see if machine has been offline or is new
 	socket.on('initPerfData', async data => {
 		// update function scope variable
 		macA = data.macA;
@@ -34,6 +40,7 @@ function socketMain(io, socket) {
 
 	socket.on('perfData', data => {
 		console.log('Tick...');
+		// Sends data to UI REACT client
 		io.to('ui').emit('data', data);
 	});
 }

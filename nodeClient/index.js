@@ -19,7 +19,7 @@ socket.on('connect', () => {
 		break;
 	}
 
-	// client auth with single key value
+	// client auth with single key value for testing
 	socket.emit('clientAuth', 'testsdsdsdsds');
 
 	// Send initial performance data
