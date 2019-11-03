@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import socket from './utils/socketConnections';
 import Widget from './components/Widget';
+import './App.css';
 
 class App extends Component {
 	constructor() {
@@ -33,7 +34,7 @@ class App extends Component {
 			// Fill widgets array with components
 			widgets.push(<Widget key={key} data={value} />);
 		});
-		return <div>{widgets}</div>;
+		return <div className="App">{widgets}</div>;
 	}
 }
 
