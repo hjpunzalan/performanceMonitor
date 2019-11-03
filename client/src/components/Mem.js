@@ -7,13 +7,15 @@ class Mem extends Component {
 		this.canvas = createRef();
 	}
 
+	componentDidMount() {
+		drawCircle(this.canvas.current, this.props.memData.memUsage * 100);
+	}
+
 	render() {
-		const canvas = this.canvas.current;
 		const { totalMem, memUsage, freeMem } = this.props.memData;
 		const gbPerBytes = 1073741824;
 		const totalMemInGb = (totalMem / gbPerBytes).toFixed(0);
 		const freeMemInGb = (freeMem / gbPerBytes).toFixed(2);
-		drawCircle(canvas, memUsage * 100);
 		return (
 			<div className="memory-usage">
 				<h3>Memory usage</h3>

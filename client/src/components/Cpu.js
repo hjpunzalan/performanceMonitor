@@ -7,10 +7,12 @@ class Cpu extends Component {
 		this.canvas = createRef();
 	}
 
+	componentDidMount() {
+		drawCircle(this.canvas.current, this.props.cpuData.cpuLoad);
+	}
+
 	render() {
-		const canvas = this.canvas.current;
 		const cpuLoad = this.props.cpuData.cpuLoad;
-		drawCircle(canvas, cpuLoad);
 
 		return (
 			<div className="cpu-load">
