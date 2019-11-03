@@ -28,6 +28,10 @@ socket.on('connect', () => {
 			socket.emit('perfData', allPerformanceData);
 		});
 	}, 1000);
+	// Stops all interval when disconnecting otherwise it will continue
+	socket.on('disconnect', () => {
+		clearInterval(perfDataInterval);
+	});
 });
 
 async function performanceData() {
