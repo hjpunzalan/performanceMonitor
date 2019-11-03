@@ -3,10 +3,14 @@
 // The UI consumes this data communicated through the socket Main
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/perfData', {
-	useNewUrlParser: true,
-	useUnifiedTopology: true
-});
+mongoose
+	.connect(process.env.DB, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true
+	})
+	.then(() => {
+		console.log('connection to DB was successful');
+	});
 
 const Machine = require('./models/Machine');
 
