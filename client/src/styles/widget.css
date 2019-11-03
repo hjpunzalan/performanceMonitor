@@ -1,14 +1,50 @@
-.canvas-wrapper {
-    position: relative;
+/* widget */
+.widget {
+    display: flex;
+    width: 100%;
 }
 
-.cpu-text {
+
+.canvas-wrapper {
+    position: relative;
+    margin: 20px 0;
+}
+
+.cpu-text,
+.mem-text {
     position: absolute;
+    font-size: 30px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.canvas {
-    transform: translate(17%, 0);
+.widget-text {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.memory-usage,
+.cpu-load {
+    display: flex;
+    flex-direction: column;
+    margin: 0 2rem;
+    align-items: center;
+}
+
+.cpu-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cpu-info div {
+    margin-bottom: 20px;
+}
+
+.more-info {
+    display: flex;
+    flex-direction: column;
 }

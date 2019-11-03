@@ -29,7 +29,7 @@ export default class Widget extends Component {
 		const info = { macA, osType, upTime, cpuModel, numCores, cpuSpeed };
 
 		return (
-			<div>
+			<div className="widget">
 				<Cpu cpuData={cpu} />
 				<Mem memData={mem} />
 				<Info infoData={info} />

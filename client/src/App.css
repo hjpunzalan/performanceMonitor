@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 .App {
@@ -9,4 +10,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 50px;
+  margin: 0 auto;
 }

@@ -32,7 +32,6 @@ socket.on('connect', () => {
 	let perfDataInterval = setInterval(() => {
 		// set Interval repeats the callback
 		performanceData().then(allPerformanceData => {
-			allPerformanceData.macA = macA;
 			socket.emit('perfData', allPerformanceData);
 		});
 	}, 1000);

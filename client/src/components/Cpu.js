@@ -13,11 +13,15 @@ class Cpu extends Component {
 		drawCircle(canvas, cpuLoad);
 
 		return (
-			<div className="cpu">
+			<div className="cpu-load">
 				<h3>CPU Load</h3>
 				<div className="canvas-wrapper">
-					<canvas className="canvas" ref={this.canvas}></canvas>
-					<span className="cpu-text">{cpuLoad}</span>
+					<canvas
+						className="canvas"
+						ref={this.canvas}
+						width="200"
+						height="200"></canvas>
+					<span className="cpu-text">{cpuLoad}%</span>
 				</div>
 			</div>
 		);
