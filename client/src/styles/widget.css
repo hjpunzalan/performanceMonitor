@@ -2,6 +2,15 @@
 .widget {
     display: flex;
     width: 100%;
+    justify-content: center;
+    border: 5px solid grey;
+    padding: 20px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.widget.offline {
+    background: rgba(59, 59, 56, 0.39)
 }
 
 
@@ -47,4 +56,13 @@
 .more-info {
     display: flex;
     flex-direction: column;
+}
+
+.not-active {
+    color: #8b0000;
+    font-size: 100px;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
 }

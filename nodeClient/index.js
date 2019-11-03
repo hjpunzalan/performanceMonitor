@@ -72,6 +72,7 @@ async function performanceData() {
 	// - clock speed
 	const cpuSpeed = cpus[0].speed;
 	const cpuLoad = await getCpuLoad();
+	const isActive = true;
 	return {
 		freeMem,
 		totalMem,
@@ -82,7 +83,8 @@ async function performanceData() {
 		cpuModel,
 		numCores,
 		cpuSpeed,
-		cpuLoad
+		cpuLoad,
+		isActive
 	};
 }
 // cpus is all cores, need the average of all cores which gives cpu average

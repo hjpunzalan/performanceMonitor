@@ -25,10 +25,30 @@ function socketMain(io, socket) {
 			// valid UI client
 			socket.join('ui');
 			console.log('A react client has joined');
+			// For all machines assume they are offline when first loaded
+			Machine.find({}, (err, docs) => {
+				docs.forEach(machine => {
+					// on first load, assume all machines are offline
+					machine.isActive = false;
+					io.to('ui').emit('data', machine);
+				});
+			});
 		} else {
 			// an invalid client joined
 			socket.disconnect(true);
 		}
+	});
+
+	//listens to machine going offline
+	socket.on('disconnect', () => {
+		// macA available from scope
+		Machine.find({ macA }, (err, docs) => {
+			if (docs.length > 0) {
+				// Send one last emit to React
+				docs[0].isActive = false;
+				io.to('ui').emit('data', docs[0]);
+			}
+		});
 	});
 
 	// machine connected, check to see if its new

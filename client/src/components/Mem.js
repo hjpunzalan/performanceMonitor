@@ -9,9 +9,9 @@ class Mem extends Component {
 
 	render() {
 		const canvas = this.canvas.current;
-		const { totalMem, usedMem, memUsage, freeMem } = this.props.memData;
+		const { totalMem, memUsage, freeMem } = this.props.memData;
 		const gbPerBytes = 1073741824;
-		const totalMemInGb = (totalMem / gbPerBytes).toFixed(2);
+		const totalMemInGb = (totalMem / gbPerBytes).toFixed(0);
 		const freeMemInGb = (freeMem / gbPerBytes).toFixed(2);
 		drawCircle(canvas, memUsage * 100);
 		return (
