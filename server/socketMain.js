@@ -13,8 +13,9 @@ function socketMain(io, socket) {
 		if (key === 'testsdsdsdsds') {
 			// valid nodeClient
 			socket.join('clients');
-		} else if (key === '23232') {
-			socket.join('clients');
+		} else if (key === '23sdsad232') {
+			socket.join('ui');
+			console.log('A react client has joined');
 		} else {
 			// an invalid client joined
 			socket.disconnect(true);
@@ -32,7 +33,8 @@ function socketMain(io, socket) {
 	});
 
 	socket.on('perfData', data => {
-		console.log(data);
+		console.log('Tick...');
+		io.to('ui').emit('data', data);
 	});
 }
 

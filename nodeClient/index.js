@@ -4,7 +4,7 @@
 //  - socket.io-client
 const os = require('os');
 const io = require('socket.io-client');
-let socket = io('http://localhost:3000');
+let socket = io('http://localhost:8000');
 
 socket.on('connect', () => {
 	// To identify this machine to whomever is connected using network interfaces (MAC)
