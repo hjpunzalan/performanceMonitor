@@ -25,12 +25,15 @@ class App extends Component {
 	}
 
 	render() {
-		console.log(this.state.performanceData);
-		return (
-			<div>
-				<Widget />
-			</div>
-		);
+		let widgets = [];
+		const data = this.state.performanceData;
+		// grab each machine , by property, from data
+		// Return [[key, value]]
+		Object.entries(data).forEach(([key, value]) => {
+			// Fill widgets array with components
+			widgets.push(<Widget key={key} data={value} />);
+		});
+		return <div>{widgets}</div>;
 	}
 }
 

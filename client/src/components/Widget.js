@@ -4,15 +4,15 @@ import Mem from './Mem';
 import Info from './Info';
 
 export default class Widget extends Component {
-	constructor() {
-		super();
-		this.state = {};
+	constructor(props) {
+		super(props);
 	}
 
 	render() {
 		return (
 			<div>
 				<h1>Widget</h1>
+				<p>{this.props.data.cpuLoad}</p>
 				<Cpu />
 				<Mem />
 				<Info />
