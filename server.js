@@ -8,8 +8,7 @@ const socketio = require('socket.io');
 const helmet = require('helmet');
 const socketMain = require('./socketMain');
 const path = require('path');
-
-const port = 8000;
+const port = process.env.PORT || 8000;
 const num_processes = require('os').cpus().length;
 // check to see if it's running -- redis-cli monitor
 const io_redis = require('socket.io-redis');
