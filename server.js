@@ -2,6 +2,7 @@
 // require sticky session to handle multiple processes which could use long polling
 // require('dotenv').config({ path: './config.env' });
 const express = require('express');
+const http = require('http');
 const cluster = require('cluster');
 const net = require('net');
 const socketio = require('socket.io');
@@ -73,7 +74,7 @@ if (cluster.isMaster) {
 
 	// Don't expose our internal server to the outside world.
 	// Workers only communicate with master
-	const server = app.listen(0, 'localhost');
+	const server = http.createServer(app);
 	console.log('Worker listening...');
 	const io = socketio(server);
 
