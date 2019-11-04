@@ -9,7 +9,7 @@ const helmet = require('helmet');
 const socketMain = require('./socketMain');
 const path = require('path');
 const port = process.env.PORT || 8000;
-const num_processes = require('os').cpus().length;
+const num_processes = process.env.WEB_CONCURRENCY;
 // check to see if it's running -- redis-cli monitor
 const io_redis = require('socket.io-redis');
 const farmhash = require('farmhash');
@@ -73,14 +73,14 @@ if (cluster.isMaster) {
 	// Don't expose our internal server to the outside world.
 	// Workers only communicate with master
 	const server = app.listen(0, 'localhost');
-	// console.log("Worker listening...");
+	console.log('Worker listening...');
 	const io = socketio(server);
 
 	// Tell Socket.IO to use the redis adapter. By default, the redis
 	// server is assumed to be on localhost:6379. You don't have to
 	// specify them explicitly unless you want to change them.
 	// redis-cli monitor
-	io.adapter(io_redis({ host: 'localhost', port: 6379 })); // default values
+	io.adapter(io_redis()); // default values
 
 	// Here you might use Socket.IO middleware for authorization etc.
 	// on connection, send the socket over to our module with socket stuff
