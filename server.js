@@ -75,9 +75,9 @@ if (cluster.isMaster) {
 	// Don't expose our internal server to the outside world.
 	// Workers only communicate with master
 	const server = http.createServer(app);
-	server.listen(0, 'localhost');
 	console.log('Worker listening...');
 	const io = socketio(server);
+	server.listen(process.env.PORT || 8000);
 
 	// Tell Socket.IO to use the redis adapter. By default, the redis
 	// server is assumed to be on localhost:6379. You don't have to
