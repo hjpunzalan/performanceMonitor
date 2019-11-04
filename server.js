@@ -7,6 +7,7 @@ const net = require('net');
 const socketio = require('socket.io');
 const helmet = require('helmet');
 const socketMain = require('./socketMain');
+const path = require('path');
 
 const port = 8000;
 const num_processes = require('os').cpus().length;
@@ -63,8 +64,12 @@ if (cluster.isMaster) {
 } else {
 	// Note we don't use a port here because the master listens on it for us.
 	let app = express();
-	// app.use(express.static(__dirname + '/public'));
 	app.use(helmet());
+	app.use(express.static('client/build'));
+
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	});
 
 	// Don't expose our internal server to the outside world.
 	// Workers only communicate with master

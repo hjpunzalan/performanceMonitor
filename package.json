@@ -5,12 +5,16 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "heroku-postbuild": "cd client  && npm install && npm run build",
+    "server": "node server.js",
+    "nodeClient": "cd nodeClient && node index.js",
+    "start": "concurrently \"npm run server\" \"npm run nodeClient\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^5.0.0",
     "dotenv": "^8.2.0",
     "farmhash": "^3.0.0",
     "helmet": "^3.21.2",
