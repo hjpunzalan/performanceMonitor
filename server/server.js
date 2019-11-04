@@ -68,7 +68,7 @@ if (cluster.isMaster) {
 
 	// Don't expose our internal server to the outside world.
 	// Workers only communicate with master
-	const server = app.listen(0, 'localhost');
+	const server = app.listen();
 	// console.log("Worker listening...");
 	const io = socketio(server);
 
