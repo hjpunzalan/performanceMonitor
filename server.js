@@ -60,6 +60,7 @@ if (cluster.isMaster) {
 	});
 	server.listen(port);
 	console.log(`Master listening on port ${port}`);
+	console.log('workers');
 } else {
 	// Note we don't use a port here because the master listens on it for us.
 	let app = express();
