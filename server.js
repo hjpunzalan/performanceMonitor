@@ -62,7 +62,7 @@ if (cluster.isMaster) {
 		let worker = workers[worker_index(connection.remoteAddress, num_processes)];
 		worker.send('sticky-session:connection', connection);
 	});
-	server.listen(port);
+	// server.listen(port);
 	console.log(`Master listening on port ${port}`);
 	console.log(workers.length);
 } else {
@@ -80,13 +80,13 @@ if (cluster.isMaster) {
 	const server = http.createServer(app);
 	console.log('Worker listening...');
 	const io = socketio(server);
-	// server.listen(process.env.PORT || 8000);
+	server.listen(port);
 
 	// Tell Socket.IO to use the redis adapter. By default, the redis
 	// server is assumed to be on localhost:6379. You don't have to
 	// specify them explicitly unless you want to change them.
 	// redis-cli monitor
-	// io.adapter(io_redis()); // default values
+	io.adapter(io_redis()); // default values
 
 	// Here you might use Socket.IO middleware for authorization etc.
 	// on connection, send the socket over to our module with socket stuff
