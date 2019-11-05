@@ -1,6 +1,6 @@
 // entrypoint for our cluster which will make workers and the workers will do the Socket.io handling
 // require sticky session to handle multiple processes which could use long polling
-// require('dotenv').config({ path: './config.env' });
+require('dotenv').config({ path: './config.env' });
 const express = require('express');
 const http = require('http');
 const cluster = require('cluster');
@@ -10,7 +10,10 @@ const helmet = require('helmet');
 const socketMain = require('./socketMain');
 const path = require('path');
 const port = process.env.PORT || 8000;
-const num_processes = process.env.WEB_CONCURRENCY;
+const num_processes =
+	process.env.NODE_ENV === 'production'
+		? process.env.WEB_CONCURRENCY
+		: require('os').cpus().length;
 // check to see if it's running -- redis-cli monitor
 const io_redis = require('socket.io-redis');
 const farmhash = require('farmhash');
@@ -83,7 +86,7 @@ if (cluster.isMaster) {
 	// server is assumed to be on localhost:6379. You don't have to
 	// specify them explicitly unless you want to change them.
 	// redis-cli monitor
-	io.adapter(io_redis()); // default values
+	// io.adapter(io_redis()); // default values
 
 	// Here you might use Socket.IO middleware for authorization etc.
 	// on connection, send the socket over to our module with socket stuff
