@@ -9,7 +9,7 @@
     "heroku-postbuild": "concurrently \"npm run build-client\" \"npm run build-nodeClient\"",
     "server": "node server.js",
     "nodeClient": "cd nodeClient && node index.js",
-    "start": "concurrently \"npm run server\" \"npm run nodeClient\""
+    "start": "concurrently \"npm run nodeClient\" \"npm run server\""
   },
   "keywords": [],
   "author": "",

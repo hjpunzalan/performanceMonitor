@@ -7,6 +7,7 @@ const io = require('socket.io-client');
 let socket = io('http://localhost:8000');
 
 socket.on('connect', () => {
+	console.log('node client running');
 	// To identify this machine to whomever is connected using network interfaces (MAC)
 	const nI = os.networkInterfaces();
 	let macA;
