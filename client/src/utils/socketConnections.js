@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-let socket = io.connect('http://localhost:8000');
+let socket = io.connect('/');
 
 socket.emit('clientAuth', '23sdsad232');
 
