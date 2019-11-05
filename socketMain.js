@@ -56,7 +56,7 @@ function socketMain(io, socket) {
 	// This for react to see if machine has been offline or is new
 	socket.on('initPerfData', async data => {
 		// update function scope variable
-		macA = data.macA;
+		macA = data.macA || 'test';
 		// Check mongo database
 		const mongooseResponse = await checkAndAdd(data);
 		console.log(mongooseResponse);
