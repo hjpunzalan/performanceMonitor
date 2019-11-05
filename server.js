@@ -86,7 +86,7 @@ if (cluster.isMaster) {
 	// server is assumed to be on localhost:6379. You don't have to
 	// specify them explicitly unless you want to change them.
 	// redis-cli monitor
-	io.adapter(io_redis({ host: 'localhost', port: port })); // default values
+	io.adapter(io_redis(process.env.REDIS_URL)); // default values
 
 	// Here you might use Socket.IO middleware for authorization etc.
 	// on connection, send the socket over to our module with socket stuff
