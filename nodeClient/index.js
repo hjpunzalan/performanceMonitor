@@ -10,16 +10,16 @@ console.log('node client running');
 socket.on('connect', () => {
 	console.log('node client connected to socket');
 	// To identify this machine to whomever is connected using network interfaces (MAC)
-	const nI = os.networkInterfaces();
-	let macA;
+	// const nI = os.networkInterfaces();
+	let macA = 'test';
 	// looop through all the nI for this machine and find a non-internal one
 	// internal to true prevents internet access to the machine
-	for (let key in nI) {
-		if (!nI[key][0].internal)
-			// grab first element as its the same
-			macA = nI[key][0].mac || 'test';
-		break;
-	}
+	// for (let key in nI) {
+	// 	if (!nI[key][0].internal)
+	// 		// grab first element as its the same
+	// 		macA = nI[key][0].mac || 'test';
+	// 	break;
+	// }
 
 	// client auth with single key value for testing
 	socket.emit('clientAuth', 'testsdsdsdsds');
