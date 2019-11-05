@@ -4,7 +4,7 @@
 //  - socket.io-client
 const os = require('os');
 const io = require('socket.io-client');
-let socket = io('http://localhost:8000');
+let socket = io(`http://localhost:${process.env.PORT}`);
 console.log('node client running');
 
 socket.on('connect', () => {
