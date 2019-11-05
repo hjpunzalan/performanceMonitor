@@ -59,7 +59,7 @@ if (cluster.isMaster) {
 		let worker = workers[worker_index(connection.remoteAddress, num_processes)];
 		worker.send('sticky-session:connection', connection);
 	});
-	// server.listen(port);
+	server.listen(port);
 	console.log(`Master listening on port ${port}`);
 	console.log(workers.length);
 } else {
