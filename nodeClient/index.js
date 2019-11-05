@@ -16,7 +16,7 @@ socket.on('connect', () => {
 	for (let key in nI) {
 		if (!nI[key][0].internal)
 			// grab first element as its the same
-			macA = nI[key][0].mac;
+			macA = nI[key][0].mac || 'test';
 		break;
 	}
 

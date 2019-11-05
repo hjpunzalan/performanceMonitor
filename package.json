@@ -8,7 +8,7 @@
     "build-nodeClient": "cd nodeClient && npm install",
     "heroku-postbuild": "concurrently \"npm run build-client\" \"npm run build-nodeClient\"",
     "server": "node server.js",
-    "nodeClient": "cd nodeClient && node index.js",
+    "nodeClient": "cd nodeClient && npm start",
     "start": "concurrently \"npm run nodeClient\" \"npm run server\""
   },
   "keywords": [],

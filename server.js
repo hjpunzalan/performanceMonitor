@@ -10,10 +10,7 @@ const helmet = require('helmet');
 const socketMain = require('./socketMain');
 const path = require('path');
 const port = process.env.PORT || 8000;
-const num_processes =
-	process.env.NODE_ENV === 'production'
-		? process.env.WEB_CONCURRENCY
-		: require('os').cpus().length;
+const num_processes = process.env.WEB_CONCURRENCY || 1;
 // check to see if it's running -- redis-cli monitor
 const io_redis = require('socket.io-redis');
 const farmhash = require('farmhash');
