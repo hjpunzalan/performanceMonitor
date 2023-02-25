@@ -27,7 +27,7 @@ function socketMain(io, socket) {
 			console.log('A react client has joined');
 			// For all machines assume they are offline when first loaded
 			Machine.find({}, (err, docs) => {
-				if (err) console.error(err) return
+				if (err) return console.error(err)
 				if (!docs) return
 				docs.forEach(machine => {
 					// on first load, assume all machines are offline
