@@ -9,7 +9,7 @@ const socketio = require('socket.io');
 const helmet = require('helmet');
 const socketMain = require('./socketMain');
 const path = require('path');
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 6000;
 // const num_processes = process.env.WEB_CONCURRENCY || 1;
 // // check to see if it's running -- redis-cli monitor
 // const io_redis = require('socket.io-redis');
@@ -69,13 +69,15 @@ app.use(helmet());
 app.use(express.static('client/build'));
 
 app.get('*', (req, res) => {
+	console.log("SERVE CLIENT FROM BUILD")
 	res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
 
 // Don't expose our internal server to the outside world.
 // Workers only communicate with master
-const server = app.listen(port);
-console.log('Server listening to port ' + port + ' ...');
+const server = app.listen(port, () => {
+	console.log('Server listening to port ' + port + ' ...');
+});
 const io = socketio(server);
 
 // Tell Socket.IO to use the redis adapter. By default, the redis

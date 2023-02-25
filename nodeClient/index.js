@@ -4,8 +4,10 @@
 //  - socket.io-client
 const os = require('os');
 const io = require('socket.io-client');
-let socket = io(`http://localhost:${process.env.PORT}`);
-console.log('node client running');
+require('dotenv').config({ path: '../config.env' });
+const port = process.env.PORT || 6000
+let socket = io(`http://localhost:${port}`);
+console.log('node client running at port:', port);
 
 socket.on('connect', () => {
 	console.log('node client connected to socket');
