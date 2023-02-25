@@ -27,6 +27,7 @@ function socketMain(io, socket) {
 			console.log('A react client has joined');
 			// For all machines assume they are offline when first loaded
 			Machine.find({}, (err, docs) => {
+				if (err) console.error(err) return
 				if (!docs) return
 				docs.forEach(machine => {
 					// on first load, assume all machines are offline
@@ -44,6 +45,8 @@ function socketMain(io, socket) {
 	socket.on('disconnect', () => {
 		// macA available from scope
 		Machine.find({ macA }, (err, docs) => {
+			if (err) console.error(err) return
+			if (!docs) return
 			if (docs.length > 0) {
 				// Send one last emit to React
 				docs[0].isActive = false;
